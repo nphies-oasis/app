@@ -1,6 +1,8 @@
-net stop OasisNphiesIntegration_PROD
-copy C:\oasis_int\nphies\OasisNphiesIntegration.jar C:\oasis_int\nphies\Backup
+set YYYYMMDD=%DATE:~10,4%.%DATE:~4,2%.%DATE:~7,2%_%TIME:~0,2%.%TIME:~3,2%.%TIME:~6,2%
+set AppConfig="PROD"
+net stop OasisNphiesIntegration_%AppConfig%
+copy C:\oasis_int\nphies\OasisNphiesIntegration.jar C:\oasis_int\nphies\Backup\OasisNphiesIntegration_%YYYYMMDD%.jar
 copy C:\balsam\Nphies_Deploy\app\branch\NPHIESIntergation-0.0.1-SNAPSHOT.jar C:\oasis_int\nphies\OasisNphiesIntegration.jar
-rem copy C:\oasis_int\nphies\application_prod.properties C:\oasis_int\nphies\Backup
-rem copy C:\balsam\Nphies_Deploy\app\branch\prop\application.properties C:\oasis_int\nphies\application_prod.properties
-net start OasisNphiesIntegration_PROD
+rem copy C:\oasis_int\nphies\application_%AppConfig%.properties C:\oasis_int\nphies\Backup\application_%AppConfig%__%YYYYMMDD%.properties
+rem copy C:\balsam\Nphies_Deploy\app\branch\prop\application.properties C:\oasis_int\nphies\application_%AppConfig%.properties
+net start OasisNphiesIntegration_%AppConfig%
